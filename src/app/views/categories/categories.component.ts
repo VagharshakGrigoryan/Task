@@ -9,6 +9,7 @@ import {Category} from "../../model/Category";
 })
 export class CategoriesComponent implements OnInit {
   categories: Category[] | undefined;
+  selectorCategory: Category | undefined;
 
   constructor(private dataHandler: DataHandlerService) {
   }
@@ -18,4 +19,8 @@ export class CategoriesComponent implements OnInit {
     console.log(this.categories);
   }
 
+  showTasksByCategory(category: Category) {
+    this.selectorCategory = category;
+    this.dataHandler.fildTasksByCategory(category);
+  }
 }

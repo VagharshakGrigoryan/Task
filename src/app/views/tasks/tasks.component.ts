@@ -14,7 +14,9 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tasks = this.dataHandler.getTask();
+    this.dataHandler.taskSubject.subscribe(tasks => this.tasks = tasks)
   }
-
+  toggleTaskCompleted(task:Task){
+    task.completed = !task.completed;
+  }
 }

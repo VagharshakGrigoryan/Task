@@ -1,0 +1,7 @@
+.completed{
+  text-decoration: line-through;
+  color: #000000;
+}
+.novalue{
+  color: darkgrey;
+}

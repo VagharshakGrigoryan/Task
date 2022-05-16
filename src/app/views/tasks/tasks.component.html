@@ -1,40 +1,59 @@
-<div class="row mb-4 col-lg-12 col-12">
-  <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
-    <div class="card">
-      <div class="card-header pb-0">
-        <div class="row">
-          <div class="col-lg-6 col-7">
-            <p class="text-sm mb-0">
-            </p>
-          </div>
-          <div class="col-lg-6 col-5 my-auto text-end" >
-            <div class="dropdown float-lg-end pe-4">
-            </div>
-          </div>
-        </div>
+<div class="card">
+  <div class="card-header pb-0">
+    <div class="row">
+      <div class="col-lg-6 col-7">
+        <p class="text-sm mb-0">
+        </p>
       </div>
-      <div class="col-12">
-        <div class="table-responsive ">
-          <table class="table align-items-center mb-0 ">
-            <thead>
-            <tr>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
-              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category</th>
-              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Priority</th>
-              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Data</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let task of tasks">
-            <td style="text-align: center">{{task.id}}</td>
-            <td>{{task.title}}</td>
-            </tr>
-            </tbody>
-          </table>
+      <div class="col-lg-6 col-5 my-auto text-end">
+        <div class="dropdown float-lg-end pe-4">
         </div>
       </div>
     </div>
   </div>
+  <div class="col-12">
+    <div class="table-responsive ">
+      <table class="table align-items-center mb-0 ">
+        <thead>
+        <tr>
+          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align: center">
+            Id
+          </th>
+          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
+          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category</th>
+          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Priority</th>
+          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Data</th>
+          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+              style="text-align: left">Status
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let task of tasks;let  i = index" [class.comleted]="task.completed"  >
+          <td style="text-align: center">{{i+1}}</td>
+          <td>{{task.title}}</td>
+          <td [class.novalue]="task.category == null"  style="text-align: center">{{task.category !=null ? task.category.title :'-----' }}</td>
+          <td style="text-align: center">{{task.priority !=null ? task.priority.title :'-----'}}</td>
+          <td style="text-align: center">{{task.date !=null ? (task.date | date:'short') : '-----' }}</td>
+
+          <td style="text-align: center">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input [checked]="task.completed" class="form-check-input" type="checkbox" value=""
+                       (click)="toggleTaskCompleted(task)"
+                >
+                <span class="form-check-sign">
+                   <span class="check"></span>
+                 </span>
+              </label>
+            </div>
+
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
+
